@@ -1,0 +1,70 @@
+﻿@model VisitRegistrationApplication.Models.UserModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+<fieldset class="margin-top-fieldset">
+    <div>
+        <legend class="">Rejestracja</legend>
+    </div>
+    <div class="label-success">@ViewBag.SuccessMessage</div>
+    <div class="label-danger">@ViewBag.ErrorEmailMessage</div>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="firstName">@Html.LabelFor(model => model.FirstName)</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.FirstName)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text text-danger" })</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="lastName">@Html.LabelFor(model => model.LastName)</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.LastName)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text text-danger" })</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">@Html.LabelFor(model => model.Email)</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Email)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.Email, null, new { @class = "text text-danger" })</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">@Html.LabelFor(model => model.Password)</label>
+            <div class="controls">
+                @Html.PasswordFor(model => model.Password)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.Password, null, new { @class = "text text-danger" })</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- Password -->
+            <label class="control-label" for="password_confirm">@Html.LabelFor(model => model.ConfirmPassword)</label>
+            <div class="controls">
+                @Html.PasswordFor(model => model.ConfirmPassword)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "text text-danger" })</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+                <input class="btn btn-success" type="submit" value="Utwórz" />
+                <input class="btn btn-danger" type="reset" value="Reset" />
+            </div>
+        </div>
+    }
+</fieldset>
+
