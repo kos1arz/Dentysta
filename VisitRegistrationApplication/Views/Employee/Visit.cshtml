@@ -15,13 +15,13 @@
     <div class="label-danger">@ViewBag.ErrorEmailMessage</div>
     @using (Html.BeginForm("Visit", "Employee", FormMethod.Post))
     {
-        <div class="control-group">
+        <div class="control-group" style="display:none;">
             <div class="controls">
                 @Html.TextBoxFor(x => x.UserId, new { @Value = userId })
             </div>
         </div>
 
-        <div class="control-group">
+        <div class="control-group" style="display:none;">
             <div class="controls">
                 @Html.TextBoxFor(x => x.EmployeeId, new { @Value = employeeId })
             </div>

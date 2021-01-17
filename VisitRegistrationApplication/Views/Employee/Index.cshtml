@@ -1,11 +1,15 @@
-﻿@model IEnumerable<VisitRegistrationApplication.DBModel.User>
+﻿@model IEnumerable<VisitRegistrationApplication.DBModel.Users>
 
 @{
     ViewBag.Title = "Index";
+    var userRole = ViewBag.RoleId;
 }
 
 <p style="margin-top: 30px;">
-    @Html.ActionLink("Stwórz nowego", "Create", "Employee")
+    @if (userRole == 1)
+    {
+        @Html.ActionLink("Stwórz nowego", "Create", "Employee")
+    }
 </p>
 <table class="table">
     <tr>
@@ -40,8 +44,9 @@
         </td>
         <td>
             @Html.ActionLink("Zapisz się", "Visit", new { id = item.Id }) |
-            @Html.ActionLink("Edycja", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            @if (userRole == 1) { 
+             @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            }
         </td>
     </tr>
 }

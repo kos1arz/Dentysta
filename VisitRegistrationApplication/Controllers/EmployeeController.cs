@@ -15,8 +15,10 @@ namespace VisitRegistrationApplication.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
+                var user = objDentistDBEntities.Users.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
+                ViewBag.RoleId = user.Role;
                 return View(objDentistDBEntities.Users.Where(x => x.Role == 3).ToList());
             }
         }
@@ -35,9 +37,9 @@ namespace VisitRegistrationApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+                using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
                 {
-                    User objUser = new DBModel.User();
+                    var objUser = new DBModel.Users();
 
                     if (objDentistDBEntities.Users.Any(x => x.Email == objUserModel.Email))
                     {
@@ -64,7 +66,7 @@ namespace VisitRegistrationApplication.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
                 return View(objDentistDBEntities.Users.Where(x => x.Id == id).FirstOrDefault());
             }
@@ -74,7 +76,7 @@ namespace VisitRegistrationApplication.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
                 var user = objDentistDBEntities.Users.Where(x => x.Id == id).FirstOrDefault();
                 objDentistDBEntities.Users.Remove(user);
@@ -89,7 +91,7 @@ namespace VisitRegistrationApplication.Controllers
         [HttpGet]
         public ActionResult Visit(int id)
         {
-            using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
                var employee = objDentistDBEntities.Users.Where(x => x.Id == id).FirstOrDefault();
                 var user = objDentistDBEntities.Users.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
@@ -108,10 +110,72 @@ namespace VisitRegistrationApplication.Controllers
         [HttpPost]
         public ActionResult Visit(string UserId, string EmployeeId, string time, DateTime startDate)
         {
-            // ViewBag.ErrorEmailMessage = startDate.Ticks;
-            ViewBag.ErrorEmailMessage = startDate.AddHours(Convert.ToInt32(time));
+            var dateInt = startDate.AddHours(Convert.ToInt32(time)).ToString();
+            var idUser = Convert.ToInt32(UserId);
+            var idEmployee = Convert.ToInt32(EmployeeId);      
 
-            return View();
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
+            {
+                var employee = objDentistDBEntities.Users.Where(x => x.Id == idEmployee).FirstOrDefault();
+
+                if (objDentistDBEntities.Visit.Any(x => x.employeeId == idEmployee && x.timedate == dateInt))
+                {
+                    
+                    ViewBag.EmployeeId = employee.Id;
+                    ViewBag.EmployeeFirstName = employee.FirstName;
+                    ViewBag.EmployeeLastName = employee.LastName;
+
+                    ViewBag.UserId = idUser;
+                    ViewBag.ErrorEmailMessage = "Termin już jest zajęty!";
+                    return View();
+                }
+
+                var objvisit = new DBModel.Visit();
+                objvisit.timedate = dateInt;
+                objvisit.userId = idUser;
+                objvisit.employeeId = idEmployee;
+                objvisit.timeOrderBy = startDate.AddHours(Convert.ToInt32(time));
+                objvisit.employeeName = employee.FirstName + " " + employee.LastName;
+
+                objDentistDBEntities.Visit.Add(objvisit);
+                objDentistDBEntities.SaveChanges();
+            }
+            ViewBag.ErrorEmailMessage = startDate.AddHours(Convert.ToInt32(time)).Ticks;
+
+            return RedirectToAction("Index", "Employee");
+        }
+
+        [Authorize]
+        public ActionResult Appointments()
+        {
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
+            {
+                var user = objDentistDBEntities.Users.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
+                return View(objDentistDBEntities.Visit.Where(x => x.userId == user.Id).OrderBy(s => s.timeOrderBy).ToList());
+            }
+        }
+
+        [Authorize]
+        public ActionResult AppointmentsDelete(int id)
+        {
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
+            {
+                return View(objDentistDBEntities.Visit.Where(x => x.Id == id).FirstOrDefault());
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AppointmentsDelete(int id, FormCollection collection)
+        {
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
+            {
+                var appointment = objDentistDBEntities.Visit.Where(x => x.Id == id).FirstOrDefault();
+                objDentistDBEntities.Visit.Remove(appointment);
+                objDentistDBEntities.SaveChanges();
+
+                return RedirectToAction("Appointments", "Employee");
+            }
         }
     }
 }

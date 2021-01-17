@@ -12,7 +12,7 @@ namespace VisitRegistrationApplication.Controllers
 {
     public class AccountController : Controller
     {
-        DentistDBEntities objDentistDBEntities = new DentistDBEntities();
+        DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3();
         // GET: Account
         public ActionResult Index()
         {
@@ -31,7 +31,7 @@ namespace VisitRegistrationApplication.Controllers
             if (ModelState.IsValid)
             {
 
-                User objUser = new DBModel.User();
+                var objUser = new DBModel.Users();
 
                 if(objDentistDBEntities.Users.Any(x =>x.Email == objUserModel.Email))
                 {

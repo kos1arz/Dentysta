@@ -13,10 +13,10 @@ namespace VisitRegistrationApplication.DBModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DentistDBEntities : DbContext
+    public partial class DentistDBEntities3 : DbContext
     {
-        public DentistDBEntities()
-            : base("name=DentistDBEntities")
+        public DentistDBEntities3()
+            : base("name=DentistDBEntities3")
         {
         }
     
@@ -25,6 +25,7 @@ namespace VisitRegistrationApplication.DBModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Visit> Visit { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

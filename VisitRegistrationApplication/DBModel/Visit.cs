@@ -15,8 +15,10 @@ namespace VisitRegistrationApplication.DBModel
     public partial class Visit
     {
         public int Id { get; set; }
-        public int date { get; set; }
         public int userId { get; set; }
         public int employeeId { get; set; }
+        public string timedate { get; set; }
+        public string employeeName { get; set; }
+        public Nullable<System.DateTime> timeOrderBy { get; set; }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model VisitRegistrationApplication.DBModel.Visit
+
+@{
+    ViewBag.Title = "AppointmentsDelete";
+}
+
+<h3>Jesteś pewny?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Dentysta:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeName)
+        </dd>
+
+        <dt>
+            Godzina spotkania:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeOrderBy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-danger" /> |
+            @Html.ActionLink("Wróć", "Appointments")
+        </div>
+    }
+</div>

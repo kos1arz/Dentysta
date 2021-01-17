@@ -36,11 +36,13 @@
                     }
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Moje wizyty", "Index", "User")</li>
+                        <li>@Html.ActionLink("Moje konto", "Index", "User")</li>
                         <li>@Html.ActionLink("Lista pracowników", "Index", "Employee")</li>
-                       
-                    }
-                    </ul>
+                        <li>
+                            @Html.ActionLink("Umówione spotkania", "Appointments", "Employee")
+                        </li>
+                                        }
+</ul>
                 @Html.Partial("_loginPartia")
             </div>
         </div>

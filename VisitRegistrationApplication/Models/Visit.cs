@@ -10,11 +10,13 @@ namespace VisitRegistrationApplication.Models
     {
         public int Id { get; set; }
 
-        public string Date { get; set; }
+        public int Date { get; set; }
 
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
-        public string EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
+
+        public int EmployeeName { get; set; }
 
     }
 }

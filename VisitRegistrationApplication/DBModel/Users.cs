@@ -12,7 +12,7 @@ namespace VisitRegistrationApplication.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Users
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

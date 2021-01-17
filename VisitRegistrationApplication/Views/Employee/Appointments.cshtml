@@ -1,0 +1,36 @@
+﻿@model IEnumerable<VisitRegistrationApplication.DBModel.Visit>
+
+@{
+    ViewBag.Title = "Appointments";
+}
+
+<h2>Umówione spotkania</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Dentysta
+        </th>
+        <th>
+            Godzina
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeOrderBy)
+        </td>
+        <td>
+            @Html.ActionLink("Rezygnzacja ze spotkania", "AppointmentsDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

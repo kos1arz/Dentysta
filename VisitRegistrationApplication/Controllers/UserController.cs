@@ -16,7 +16,7 @@ namespace VisitRegistrationApplication.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
                 var user = objDentistDBEntities.Users.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
                 ViewBag.Identificacion = user.Id;
@@ -32,7 +32,7 @@ namespace VisitRegistrationApplication.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+            using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
                 return View(objDentistDBEntities.Users.Where(s => s.Id == id).FirstOrDefault());
             }
@@ -40,11 +40,11 @@ namespace VisitRegistrationApplication.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id, User user)
+        public ActionResult Edit(int id, Users user)
         {
             try
             {
-                using (DentistDBEntities objDentistDBEntities = new DentistDBEntities())
+                using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
                 {
                     objDentistDBEntities.Entry(user).State = EntityState.Modified;
                     objDentistDBEntities.SaveChanges();

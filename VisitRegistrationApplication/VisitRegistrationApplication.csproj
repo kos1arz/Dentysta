@@ -132,9 +132,6 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DBModel\User.cs">
-      <DependentUpon>UserDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBModel\UserDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,23 +147,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DBModel\Visit.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Visit.Context.tt</DependentUpon>
+    <Compile Include="DBModel\Users.cs">
+      <DependentUpon>UserDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\Visit.cs">
-      <DependentUpon>Visit.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\Visit.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Visit.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\Visit1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Visit.tt</DependentUpon>
+      <DependentUpon>UserDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,23 +169,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DBModel\UserDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UserDBModel.Context.cs</LastGenOutput>
       <DependentUpon>UserDBModel.edmx</DependentUpon>
+      <LastGenOutput>UserDBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DBModel\UserDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UserDBModel.edmx</DependentUpon>
       <LastGenOutput>UserDBModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="DBModel\Visit.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Visit.edmx</DependentUpon>
-      <LastGenOutput>Visit.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DBModel\Visit.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Visit.edmx</DependentUpon>
-      <LastGenOutput>Visit1.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -214,13 +189,6 @@
     </EntityDeploy>
     <Content Include="DBModel\UserDBModel.edmx.diagram">
       <DependentUpon>UserDBModel.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="DBModel\Visit.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Visit.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DBModel\Visit.edmx.diagram">
-      <DependentUpon>Visit.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -256,6 +224,8 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Visit.cshtml" />
+    <Content Include="Views\Employee\Appointments.cshtml" />
+    <Content Include="Views\Employee\AppointmentsDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
