@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VisitRegistrationApplication.DBModel.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p style="margin-top: 30px;">
+    @Html.ActionLink("Stwórz nowego", "Create", "Employee")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.ActionLink("Zapisz się", "Visit", new { id = item.Id }) |
+            @Html.ActionLink("Edycja", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
