@@ -43,9 +43,12 @@
             @Html.DisplayFor(modelItem => item.CreatedOn)
         </td>
         <td>
-            @Html.ActionLink("Zapisz się", "Visit", new { id = item.Id }) |
-            @if (userRole == 1) { 
-             @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            @if (userRole == 2)
+            {
+                @Html.ActionLink("Zapisz się", "Visit", new { id = item.Id })
+            }
+            @if(userRole == 1) {
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
             }
         </td>
     </tr>

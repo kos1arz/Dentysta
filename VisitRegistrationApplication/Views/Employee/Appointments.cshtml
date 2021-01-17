@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Appointments";
+    var roleId = ViewBag.RoleId;
 }
 
 <h2>Umówione spotkania</h2>
@@ -28,7 +29,10 @@
             @Html.DisplayFor(modelItem => item.timeOrderBy)
         </td>
         <td>
-            @Html.ActionLink("Rezygnzacja ze spotkania", "AppointmentsDelete", new { id=item.Id })
+            @if (roleId == 2)
+            {
+                @Html.ActionLink("Rezygnzacja ze spotkania", "AppointmentsDelete", new { id = item.Id })
+            }
         </td>
     </tr>
 }

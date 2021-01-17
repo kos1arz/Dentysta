@@ -44,7 +44,7 @@ namespace VisitRegistrationApplication.Controllers
                     if (objDentistDBEntities.Users.Any(x => x.Email == objUserModel.Email))
                     {
                         ViewBag.ErrorEmailMessage = "Email już istnieje!";
-                        return View("Create", "Employee");
+                        return View();
                     }
 
                     objUser.CreatedOn = DateTime.Now;
@@ -60,7 +60,7 @@ namespace VisitRegistrationApplication.Controllers
                     return RedirectToAction("Index", "Employee");
                 }
             }
-            return View("Create", "Employee");
+            return View();
         }
 
         [Authorize]
@@ -151,6 +151,11 @@ namespace VisitRegistrationApplication.Controllers
             using (DentistDBEntities3 objDentistDBEntities = new DentistDBEntities3())
             {
                 var user = objDentistDBEntities.Users.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
+                ViewBag.RoleId = user.Role;
+                if (user.Role == 3)
+                {
+                    return View(objDentistDBEntities.Visit.Where(x => x.employeeId == user.Id).OrderBy(s => s.timeOrderBy).ToList());
+                }
                 return View(objDentistDBEntities.Visit.Where(x => x.userId == user.Id).OrderBy(s => s.timeOrderBy).ToList());
             }
         }

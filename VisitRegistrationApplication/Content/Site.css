@@ -49,6 +49,12 @@ textarea {
     margin-top: 50px;
 }
 
+.jumbotron {
+    background-image: url("https://lh3.googleusercontent.com/proxy/0RenMIAcxVU9ztfk8nBSR5t3U2IAk4OcjTK22-sQiQmGAZWeeN4zZ2tMjsz8aMwMRh1eNFrw0kpRpSAUttpRDTysV2ySG0newqqBqwY9WG6nj37r6-hD_s1BivRnMrYkUpW2dQ");
+    background-size: cover;
+    background-position: center;
+}
+
 @media (min-width: 768px) {
     .navbar-nav > li > form {
         padding-top: 15px;
