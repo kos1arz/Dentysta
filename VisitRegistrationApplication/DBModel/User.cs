@@ -20,5 +20,6 @@ namespace VisitRegistrationApplication.DBModel
         public string Email { get; set; }
         public string Password { get; set; }
         public System.DateTime CreatedOn { get; set; }
+        public Nullable<int> Role { get; set; }
     }
 }

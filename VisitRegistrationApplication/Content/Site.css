@@ -31,6 +31,24 @@ textarea {
     color: #9d9d9d;
 }
 
+.nav > li > form {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.inf-content {
+    border: 1px solid #DDDDDD;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.container.bootstrap.snippets.bootdey {
+    margin-top: 50px;
+}
+
 @media (min-width: 768px) {
     .navbar-nav > li > form {
         padding-top: 15px;

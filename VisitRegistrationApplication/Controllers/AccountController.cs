@@ -44,6 +44,7 @@ namespace VisitRegistrationApplication.Controllers
                 objUser.LastName = objUserModel.LastName;
                 objUser.Email = objUserModel.Email;
                 objUser.Password = Hash.HashPassword(objUserModel.Password);
+                objUser.Role = 2;
 
                 objDentistDBEntities.Users.Add(objUser);
                 objDentistDBEntities.SaveChanges();

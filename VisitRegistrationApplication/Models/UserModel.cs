@@ -38,5 +38,7 @@ namespace VisitRegistrationApplication.Models
 
         public DateTime CreatedOn { get; set; }
 
+        public int Role { get; set; }
+
     }
 }
